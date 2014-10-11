@@ -192,3 +192,36 @@ def zero_insertion(n):
             arr.insert(i, 0)
     return list_to_number(arr)
 #print(zero_insertion(116457))
+
+
+def sum_matrix(m):
+    sum = 0
+    for i in m:
+        for each in i:
+            sum += each
+    return sum
+#print (sum_matrix([[1, 2, 3], [4, 5, 6], [7, 8, 9]]))
+
+#def matrix_bombing_plan(m):
+
+
+def next_hack(n):
+
+    def dec_to_bin(x):
+        return int(bin(x)[2:])
+
+    def has_odd_ones(number):
+        counter = 0
+        while number > 0:
+            if number % 10 == 1:
+                counter += 1
+            number = number // 10
+        if counter % 2 != 0:
+            return True
+        else:
+            return False
+    if is_int_palindrom(dec_to_bin(n + 1)) and has_odd_ones(dec_to_bin(n + 1)):
+        return n + 1
+    else:
+        return next_hack(n + 1)
+#print(next_hack(8031))
