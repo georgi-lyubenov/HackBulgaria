@@ -87,3 +87,105 @@ class Store(object):
 
     def total_income(self):
         return self.count
+
+
+class Fraction(object):
+    def __init__(self, num, denom):
+        self.num = num
+        self.denom = denom
+
+    def print_fraction(self):
+        return (str(self.num) + '/' + str(self.denom))
+
+
+def add(Fraction1, Fraction2):
+    return str(Fraction2.denom * Fraction1.num + Fraction2.num * Fraction1.denom) + '/' + str(Fraction1.denom * Fraction2.denom)
+
+
+def subtract(Fraction1, Fraction2):
+    return str(Fraction2.denom * Fraction1.num - Fraction2.num * Fraction1.denom) + '/' + str(Fraction1.denom * Fraction2.denom)
+
+
+def equal(Fraction1, Fraction2):
+    def simplify(Fraction3):
+        def find_gcd(x, y):
+            while y != 0:
+                (x, y) = (y, x % y)
+            return x
+        result = Fraction(0, 0)
+        result.num = Fraction3.num / find_gcd(Fraction3.num, Fraction3.denom)
+        result.denom = Fraction3.denom / find_gcd(Fraction3.num, Fraction3.denom)
+        return result
+    if (simplify(Fraction1)).num == (simplify(Fraction2)).num and (simplify(Fraction1)).denom == (simplify(Fraction2)).denom:
+        return True
+    else:
+        return False
+
+
+def gt_or_lt(Fraction1, Fraction2):
+    def find_gcd(x, y):
+            while y != 0:
+                (x, y) = (y, x % y)
+            return x
+
+    def simplify(Fraction3):
+        result = Fraction(0, 0)
+        result.num = Fraction3.num / find_gcd(Fraction3.num, Fraction3.denom)
+        result.denom = Fraction3.denom / find_gcd(Fraction3.num, Fraction3.denom)
+        return result
+    if (simplify(Fraction1)).denom == (simplify(Fraction2)).denom:
+        if (simplify(Fraction1)).num > (simplify(Fraction2)).num:
+            print(Fraction1.print_fraction() + " is greater than " + Fraction2.print_fraction())
+        else:
+            print(Fraction1.print_fraction() + " is less than " + Fraction2.print_fraction())
+    else:
+        def lcm(x, y):
+            return x * y // find_gcd(x, y)
+        if Fraction1.num * (lcm(Fraction1.denom, Fraction2.denom) / Fraction1.denom) > Fraction2.num * (lcm(Fraction1.denom, Fraction2.denom) / Fraction2.denom):
+            print(Fraction1.print_fraction() + " is greater than " + Fraction2.print_fraction())
+        else:
+            print(Fraction1.print_fraction() + " is less than " + Fraction2.print_fraction())
+
+
+class Employee(object):
+
+    def __init__(self, name):
+        self.name = name
+
+    def getName(self):
+        return self.name
+
+
+class HourlyEmployee(Employee):
+    def __init__(self, name, hours):
+        self.name = name
+        self.hours = hours
+        self.per_hour = 100
+
+    def weeklyPay(self, hours):
+        if hours > 40:
+            return self.hours * 1.5 * self.per_hour
+        else:
+            return self.hours * self.per_hour
+
+
+class SalariedEmployee(Employee):
+    def __init__(self, name, salary):
+        self.name = name
+        self.salary = salary
+
+    def weeklyPay(self, hours):
+        return hours * (self.salary / 40)
+
+
+class Manager(SalariedEmployee):
+
+    def __init__(self, name, salary, bonus):
+        self.name = name
+        self.salary = salary
+        self.bonus = bonus
+
+    def weeklyPay(self, hours):
+        return (self.salary / 40) * hours + (self.bonus / 40) * hours
+
+
