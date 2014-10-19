@@ -49,10 +49,12 @@ def prepare_meal(number):
             result += ("spam ")
             if i > max:
                 max = i
-    if number % 5 == 0:
-        result += "and eggs "
+    if result == "" and number % 5 == 0:
+        result += "eggs"
+    elif number % 5 == 0:
+        result += "and eggs"
     return result
-#print(prepare_meal(15))
+#print(prepare_meal(45))
 
 
 def reduce_file_path(path):
@@ -73,6 +75,8 @@ def reduce_file_path(path):
 def is_an_bn(word):
     counter = 0
     i = 0
+    if word == "":
+        return True
     while word[i] == 'a':
         counter += 1
         i += 1
@@ -99,6 +103,21 @@ def nth_fib_lists(listA, listB, n):
         return listA
     if n == 2:
         return listB
-    return listA + listB
-print(nth_fib_lists([], [1, 2, 3], 4))
+    if n == 3:
+        return listA + listB
+    return nth_fib_lists(listA, listB, n - 1) + nth_fib_lists(listA, listB, n - 2)
+
+
+def sort_fractions(fractions):
+    my_dict = {}
+    arr = []
+    result = []
+    for i in fractions:
+        my_dict[i[0] / i[1]] = i
+    for i in fractions:
+        arr.append(i[0] / i[1])
+    arr.sort()
+    for each in arr:
+        result.append(my_dict[each])
+    return result
 
