@@ -1,0 +1,61 @@
+[
+
+    {
+        "available": false,
+        "courses": [ ],
+        "github": "",
+        "name": "Antonia Iordanova"
+    },
+    {
+        "available": false,
+        "courses": [
+            {
+                "group": 2,
+                "name": "Core Java"
+            },
+            {
+                "group": 2,
+                "name": "System C"
+            }
+        ],
+        "github": "https://github.com/snejy",
+        "name": "Снежана Спасова"
+    },
+    {
+        "available": false,
+        "courses": [
+            {
+                "group": 2,
+                "name": "Core Java"
+            },
+            {
+                "group": 2,
+                "name": "System C"
+            }
+        ],
+        "github": "https://github.com/IvanVK/Core-Java",
+        "name": "Иван Котов"
+    },
+    {
+        "available": false,
+        "courses": [
+            {
+                "group": 2,
+                "name": "Frontend JavaScript"
+            }
+        ],
+        "github": "https://github.com/dtaskoff/",
+        "name": "Даниел Тасков"
+    },
+    {
+        "available": false,
+        "courses": [
+            {
+                "group": 2,
+                "name": "System C"
+            }
+        ],
+        "github": "https://github.com/kKunov",
+        "name": "Калоян Кунов"
+    }
+]
