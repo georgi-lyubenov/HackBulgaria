@@ -2,6 +2,8 @@ import sqlite3
 conn = sqlite3.connect("tables.db")
 cursor = conn.cursor()
 
+seats = [['.' for row in range(10)] for elem in range(10)]
+
 
 def show_movies():
     conn = sqlite3.connect("tables.db")
@@ -21,6 +23,11 @@ def show_movie_projections(movie_id_param):
         print('{} - {} - {} - {}'.format(row[0], row[2], row[3], row[4]))
 
 
+def print_seats():
+    for i in seats:
+        print(' '.join(i))
+
+
 def make_reservation():
     name = input("name>")
     number_of_tickets = input("number_of_tickets>")
@@ -28,18 +35,22 @@ def make_reservation():
     movie = input("choose a movie>")
     show_movie_projections(movie)
     projection = input("choose a projection>")
-    movie_id = 8
+    print_seats()
     for index in range(int(number_of_tickets)):
         row = input("choose a row>")
         col = input("choose a col>")
         seat = (row, col)
-        cursor.execute('''INSERT INTO reservations
-                         VALUES (?, ?, ?, ?, ?)''', (movie_id, name, projection, seat[0], seat[1],))
-        conn.commit()
-        movie_id += 1
+        if seats[int(row)][int(col)] != "x":
+            seats[int(row)][int(col)] = "x"
+            cursor.execute('''INSERT INTO reservations (username, projection_id, row, col)
+                         VALUES (?, ?, ?, ?)''', (name, projection, seat[0], seat[1],))
+            conn.commit()
+        else:
+            print("The seat is taken")
 
 
 def main():
+    print_seats()
     while True:
         comm = input("command>")
         if comm == "show movies":

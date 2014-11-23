@@ -4,7 +4,7 @@ conn = sqlite3.connect("tables.db")
 c = conn.cursor()
 c.execute('''PRAGMA goreign_keys = ON;''')
 
-c.execute('''CREATE TABLE IF NOT EXISTS movies (id INTEGER PRIMARY KEY, name TEXT,
+c.execute('''CREATE TABLE IF NOT EXISTS movies (id INTEGER PRIMARY KEY AUTOINCREMENT name TEXT,
             rating INTEGER)
 ''')
 
@@ -13,7 +13,7 @@ c.execute("INSERT INTO movies VALUES (2,'Wreck It Ralph',7.8)")
 c.execute("INSERT INTO movies VALUES (3,'Her',8.3)")
 
 
-c.execute('''CREATE TABLE IF NOT EXISTS projections (id INTEGER PRIMARY KEY,
+c.execute('''CREATE TABLE IF NOT EXISTS projections (id INTEGER PRIMARY KEY AUTOINCREMENT,
             movie_id INTEGER FOREIGN KEY REFERENCES movies(id) ,type TEXT,
             date TEXT, time TEXT)
 ''')
@@ -25,7 +25,7 @@ c.execute("INSERT INTO projections VALUES (4, 3, '2D', '2014-04-05', '20: 20')")
 c.execute("INSERT INTO projections VALUES (5, 2, '3D', '2014-04-02', '22: 00')")
 c.execute("INSERT INTO projections VALUES (6,2, '2D', '2014-04-02', '19: 30')")
 
-c.execute('''CREATE TABLE IF NOT EXISTS reservations (id INTEGER PRIMARY KEY, username TEXT,
+c.execute('''CREATE TABLE IF NOT EXISTS reservations (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT,
             projection_id INTEGER FOREIGN KEY REFERENCES projections(id), row INTEGER unique, col INTEGER unique)
 ''')
 
