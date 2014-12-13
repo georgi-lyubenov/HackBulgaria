@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>HackSearch</title>
+        <link href="/static/style.css", rel="stylesheet" type="text/css"/>
+
+    </head>
+
+    <body>
+        <a href="http://hackbulgaria.com"> <img src="https://hackbulgaria.com/static/img/HackBG-logo.png"> </a>
+
+        <h1>HackSearch</h1>
+
+        <form action="/search/">
+            <input type="text" name="search_word">
+            <button>Search</button>
+        </form>
+            <ul>
+                {% for item in links %}
+                    <li>
+                        {% for elem in item %}
+                        <a href="{{elem}}"> {{elem}} </a>
+                        {% endfor %}
+                    </li>
+                {% endfor %}
+            </ul>
+    </body>
+</html>
